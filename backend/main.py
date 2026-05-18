@@ -9,10 +9,15 @@ from supabase import create_client
 load_dotenv()
 
 app = FastAPI()
-supabase = create_client(
-    os.getenv("SUPABASE_URL"),
-    os.getenv("SUPABASE_KEY")
-)
+
+# Get env vars (Railway passes as env vars, not .env)
+supabase_url = os.getenv("SUPABASE_URL")
+supabase_key = os.getenv("SUPABASE_KEY")
+
+if not supabase_url or not supabase_key:
+    raise Exception("SUPABASE_URL and SUPABASE_KEY must be set")
+
+supabase = create_client(supabase_url, supabase_key)
 
 app.add_middleware(
     CORSMiddleware,
