@@ -1,0 +1,4 @@
+provider,model,tokens,cost
+openai,gpt-4,5000,0.15
+openai,gpt-3.5-turbo,10000,0.005
+claude,claude-3-opus,3000,0.045
